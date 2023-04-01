@@ -446,18 +446,18 @@
                     </div>
 
                     <div class="col-lg-8" data-aos="fade-up" data-aos-delay="300">
-                        <form action="/submit-form.php" method="post" class="row g-lg-3 gy-3">
+                        <form action="https://formsubmit.co/75eece5ecd891fc536d5e0bb215d2316" method="POST"  class="row g-lg-3 gy-3">
                             <div class="form-group col-md-6">
-                                <input type="text" class="form-control" placeholder="Enter your name">
+                                <input name="name" type="text" class="form-control" placeholder="Enter your name">
                             </div>
                             <div class="form-group col-md-6">
-                                <input type="email" class="form-control" placeholder="Enter your email">
+                                <input name="email" type="email" class="form-control" placeholder="Enter your email">
                             </div>
                             <div class="form-group col-12">
-                                <input type="text" class="form-control" placeholder="Enter subject">
+                                <input  name="subject" type="text" class="form-control" placeholder="Enter subject">
                             </div>
                             <div class="form-group col-12">
-                                <textarea name="" rows="4" class="form-control" placeholder="Enter your message"></textarea>
+                                <textarea name="message" rows="4" class="form-control" placeholder="Enter your message"></textarea>
                             </div>
                             <div class="form-group col-12 d-grid">
                                 <button type="submit" class="btn btn-brand">Contact me</button>
@@ -499,6 +499,22 @@
     <script src="./assets/js/bootstrap.bundle.min.js"></script>
     <script src="./assets/js/aos.js"></script>
     <script src="./assets/js/main.js"></script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script>
+        function sendEmail(){
+            Email.send({
+                Host : "smtp.elasticemail.com",
+                Username : "username",
+                Password : "password",
+                To : 'them@website.com',
+                From : "you@isp.com",
+                Subject : "This is the subject",
+                Body : "And this is the body"
+            }).then(
+            message => alert(message)
+            );
+        }
+    </script>
 </body>
 
 </html>
