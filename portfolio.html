@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parth Savaliya - Technical Support & Field Technician</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0a0e27;
+            --secondary: #1a1f3a;
+            --accent: #00d4ff;
+            --accent-hover: #00b8d4;
+            --text: #e0e0e0;
+            --text-muted: #a0a0a0;
+            --border: #2a3050;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 2rem;
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: 2px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(0, 212, 255, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            margin-bottom: 1rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .hero h1 .accent {
+            color: var(--accent);
+        }
+
+        .hero .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 2rem;
+            background: var(--accent);
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid var(--accent);
+        }
+
+        .cta-button:hover {
+            background: transparent;
+            color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
+        }
+
+        /* About Section */
+        section {
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), transparent);
+            border-radius: 2px;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            padding: 1.5rem;
+            background: rgba(0, 212, 255, 0.05);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            background: rgba(0, 212, 255, 0.1);
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, rgba(26, 31, 58, 1) 100%);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(26, 31, 58, 1) 100%);
+            border-color: var(--accent);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.1);
+        }
+
+        .skill-category h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            padding: 0.5rem 0;
+            color: var(--text-muted);
+            position: relative;
+            padding-left: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .skill-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .skill-list li:hover {
+            color: var(--text);
+            padding-left: 2rem;
+        }
+
+        .skill-list li:hover::before {
+            opacity: 1;
+        }
+
+        /* Experience Section */
+        .experience-timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .experience-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--accent), transparent);
+        }
+
+        .experience-item {
+            margin-bottom: 4rem;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .experience-item:nth-child(odd) {
+            margin-left: 0;
+            text-align: right;
+            padding-right: 52%;
+        }
+
+        .experience-item:nth-child(even) {
+            margin-left: 52%;
+            padding-left: 2rem;
+        }
+
+        .experience-dot {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: var(--accent);
+            border: 3px solid var(--primary);
+            border-radius: 50%;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 0;
+            z-index: 10;
+        }
+
+        .experience-content {
+            background: rgba(0, 212, 255, 0.05);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .experience-item:hover .experience-content {
+            background: rgba(0, 212, 255, 0.1);
+            border-color: var(--accent);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.1);
+        }
+
+        .experience-date {
+            color: var(--accent);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-company {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .experience-details {
+            list-style: none;
+            font-size: 0.95rem;
+        }
+
+        .experience-details li {
+            margin-bottom: 0.75rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .experience-details li::before {
+            content: '• ';
+            color: var(--accent);
+            margin-right: 0.5rem;
+        }
+
+        /* Education Section */
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .education-card {
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, rgba(26, 31, 58, 1) 100%);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .education-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), transparent);
+        }
+
+        .education-card:hover {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(26, 31, 58, 1) 100%);
+            border-color: var(--accent);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.1);
+        }
+
+        .education-degree {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-school {
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .education-year {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            text-align: center;
+        }
+
+        .contact-text {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border: 1px solid transparent;
+            border-radius: 6px;
+        }
+
+        .contact-link:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.3);
+            border-top: 1px solid var(--border);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            section {
+                padding: 4rem 0;
+            }
+
+            section h2 {
+                font-size: 1.8rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .experience-timeline::before {
+                left: 0;
+                transform: translateX(-50%);
+            }
+
+            .experience-item:nth-child(odd),
+            .experience-item:nth-child(even) {
+                margin-left: 0;
+                margin-right: 0;
+                padding-right: 0;
+                padding-left: 3rem;
+                text-align: left;
+            }
+
+            .experience-dot {
+                left: 0;
+            }
+
+            .contact-links {
+                gap: 1rem;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Scroll animation observer */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+
+        .scroll-animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">PS</div>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Hi, I'm <span class="accent">Parth Savaliya</span></h1>
+            <p class="subtitle">Technical Support & Field Technician | Fiber-Optic Specialist</p>
+            <a href="#contact" class="cta-button">Get in Touch</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Dedicated Technical Support & Field Technician with extensive hands-on experience diagnosing and resolving complex fiber-optic, data, and voice service issues.</p>
+                    <p>I specialize in utilizing advanced diagnostic hardware to ensure high-performance service activation and network reliability. My proven ability to manage on-site hardware configuration and provide exceptional customer service in high-pressure, SLA-driven environments sets me apart.</p>
+                    <p>With expertise in EXFO diagnostic tools and modern networking systems, I transform technical challenges into reliable solutions.</p>
+                </div>
+                <div class="stats">
+                    <div class="stat-item scroll-animate">
+                        <div class="stat-number">3+</div>
+                        <div class="stat-label">Years of Field Experience</div>
+                    </div>
+                    <div class="stat-item scroll-animate">
+                        <div class="stat-number">100+</div>
+                        <div class="stat-label">Projects Completed</div>
+                    </div>
+                    <div class="stat-item scroll-animate">
+                        <div class="stat-number">98%</div>
+                        <div class="stat-label">Customer Satisfaction</div>
+                    </div>
+                    <div class="stat-item scroll-animate">
+                        <div class="stat-number">15+</div>
+                        <div class="stat-label">Technical Tools Mastered</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <h2>Core Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category scroll-animate">
+                    <h3>🔧 Fiber Diagnostic Tools</h3>
+                    <ul class="skill-list">
+                        <li>EXFO MaxTester (OTDR)</li>
+                        <li>EXFO Optical Explorer (OX1)</li>
+                        <li>Optical Power Meters (OPM)</li>
+                        <li>Visual Fault Locators (VFL)</li>
+                        <li>FIP-400B Fiber Inspection Probes</li>
+                    </ul>
+                </div>
+                <div class="skill-category scroll-animate">
+                    <h3>💻 Systems & Software</h3>
+                    <ul class="skill-list">
+                        <li>Linux (CLI Administration)</li>
+                        <li>Windows OS</li>
+                        <li>VOIP/SIP Protocols</li>
+                        <li>PBX Systems</li>
+                        <li>JIRA & Ticketing Systems</li>
+                    </ul>
+                </div>
+                <div class="skill-category scroll-animate">
+                    <h3>📡 Hardware & Networks</h3>
+                    <ul class="skill-list">
+                        <li>FTTH/GPON Networks</li>
+                        <li>DSL Technologies</li>
+                        <li>Copper Cabling</li>
+                        <li>Modems & Routers</li>
+                        <li>Wireless Access Points</li>
+                    </ul>
+                </div>
+                <div class="skill-category scroll-animate">
+                    <h3>⚙️ Operations & Management</h3>
+                    <ul class="skill-list">
+                        <li>SLA Management</li>
+                        <li>Issue Triage & Escalation</li>
+                        <li>Technical Documentation</li>
+                        <li>On-Site Configuration</li>
+                        <li>Customer Support Excellence</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <h2>Professional Experience</h2>
+            <div class="experience-timeline">
+                <div class="experience-item scroll-animate">
+                    <div class="experience-dot"></div>
+                    <div class="experience-content">
+                        <div class="experience-date">June 2023 – April 2026</div>
+                        <div class="experience-title">Field Service Technician</div>
+                        <div class="experience-company">Bell Technical Solutions, Ottawa, ON</div>
+                        <ul class="experience-details">
+                            <li>Installed, maintained, and troubleshot FTTH and DSL networking systems for residential and commercial clients</li>
+                            <li>Utilized EXFO MaxTester and Optical Explorer to perform fiber-break location, link verification, and automated fault tracking</li>
+                            <li>Conducted fiber endface inspections with EXFO FIP-400B probes to prevent signal degradation</li>
+                            <li>Measured optical signal attenuation and verified light levels using EXFO Power Meters</li>
+                            <li>Configured and optimized modems, routers, and wireless networks for optimal performance</li>
+                            <li>Provided first-contact customer support and technical documentation</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-item scroll-animate">
+                    <div class="experience-dot"></div>
+                    <div class="experience-content">
+                        <div class="experience-date">January 2023 – May 2023</div>
+                        <div class="experience-title">Software Developer Intern</div>
+                        <div class="experience-company">Anemoia Studio, San Diego, USA</div>
+                        <ul class="experience-details">
+                            <li>Developed technical solutions for client applications</li>
+                            <li>Optimized app interfacing across various mobile systems</li>
+                            <li>Managed tasks within Agile framework using JIRA</li>
+                            <li>Collaborated with cross-functional teams on software development</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+        <div class="container">
+            <h2>Education</h2>
+            <div class="education-grid">
+                <div class="education-card scroll-animate">
+                    <div class="education-degree">Computer Programming Diploma</div>
+                    <div class="education-school">Algonquin College</div>
+                    <div class="education-year">Ottawa, ON</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2>Let's Connect</h2>
+            <div class="contact-content">
+                <p class="contact-text">I'm always interested in hearing about new projects and opportunities. Feel free to reach out!</p>
+                <div class="contact-links">
+                    <a href="mailto:sparth010@gmail.com" class="contact-link">
+                        📧 Email
+                    </a>
+                    <a href="tel:+1234567890" class="contact-link">
+                        📞 Phone
+                    </a>
+                    <a href="https://www.linkedin.com/in/parth-savaliya-1122b2229/" class="contact-link" target="_blank">
+                        💼 LinkedIn
+                    </a>
+                    <a href="https://github.com/ParthSavaliyaa" class="contact-link" target="_blank">
+                        🔗 GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Parth Savaliya. All rights reserved. | Crafted with precision and passion.</p>
+    </footer>
+
+    <script>
+        // Smooth scroll and animation observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-animate').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Active nav link on scroll
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section');
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('nav a').forEach(link => {
+                link.style.color = 'var(--text)';
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.style.color = 'var(--accent)';
+                }
+            });
+        });
+
+        // Parallax effect on hero
+        window.addEventListener('scroll', () => {
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.transform = `translateY(${window.scrollY * 0.5}px)`;
+            }
+        });
+    </script>
+</body>
+</html>
